@@ -1,6 +1,6 @@
 {
   "name": "ngx-markuplint-cli",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "tool for running Markuplint in Angualr app",
   "bin": {
     "ngx-markuplint": "./dist/index.js"
@@ -17,7 +17,7 @@
   "license": "ISC",
   "dependencies": {
     "glob": "^10.4.2",
-    "ngx-html-bridge-markuplint": "^0.0.11"
+    "ngx-html-bridge-markuplint": "^0.0.12"
   },
   "devDependencies": {
     "@types/glob": "^8.1.0",

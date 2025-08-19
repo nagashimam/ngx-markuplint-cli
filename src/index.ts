@@ -9,19 +9,12 @@ if (!files || files.length < 1) {
 	process.exit(1);
 }
 
-let hasViolation = false;
-
 const run = async () => {
 	const promises = files.map(async (file: string) => {
-		const rawResults = await runMarkuplintAgainstTemplateFile(file);
-		return rawResults.map((result) => {
-			const html = result.variation.plain;
+		const results = await runMarkuplintAgainstTemplateFile(file);
+		return results.map((result) => {
 			const violations = result.violations;
-			if (violations.length > 0) {
-				hasViolation = true;
-			}
 			return {
-				html,
 				violations,
 				file,
 			};
@@ -29,7 +22,7 @@ const run = async () => {
 	});
 	const results = await Promise.all(promises);
 	console.log(JSON.stringify(results));
-	const exitCode = hasViolation ? 3 : 0;
+	const exitCode = results.length > 0 ? 3 : 0;
 	process.exit(exitCode);
 };
 
