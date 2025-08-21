@@ -13,7 +13,9 @@ const run = async () => {
 	const promises = files.map(async (file: string) => {
 		const results = await runMarkuplintAgainstTemplateFile(file);
 		return results.map((result) => {
-			const violations = result.violations;
+			const violations = result.violations.map(
+				(violation) => (violation as any).message,
+			);
 			return {
 				violations,
 				file,
