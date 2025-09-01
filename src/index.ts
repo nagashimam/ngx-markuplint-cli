@@ -11,7 +11,9 @@ if (!files || files.length < 1) {
 
 const run = async () => {
 	const promises = files.map(async (file: string) => {
-		const results = await runMarkuplintAgainstTemplateFile(file);
+		const results = await runMarkuplintAgainstTemplateFile(file, {
+			includedAttributes: [],
+		});
 		return results.map((result) => {
 			const violations = result.violations.map(
 				(violation) => (violation as any).message,
