@@ -16,22 +16,25 @@ const run = async () => {
 	const includedAttributes = settings?.ngxMarkuplint
 		? settings.ngxMarkuplint.includedAttributes
 		: settings["ngxMarkuplint.includedAttributes"];
-	const promises = files.map(async (file: string) => {
-		const results = await runMarkuplintAgainstTemplateFile(file, {
+
+	const results: { file: string; violations: any[] }[] = [];
+	for (const file of files) {
+		const rawResults = await runMarkuplintAgainstTemplateFile(file, {
 			includedAttributes,
 		});
-		return results.map((result) => {
-			const violations = result.violations.map(
-				(violation) => (violation as any).message,
-			);
-			return {
-				violations,
-				file,
-			};
-		});
-	});
-	const results = await Promise.all(promises);
-	console.log(JSON.stringify(results));
+		rawResults
+			.map((result) => {
+				const violations = result.violations.map(
+					(violation) => (violation as any).message,
+				);
+				return {
+					violations,
+					file,
+				};
+			})
+			.forEach((formattedResult) => results.push(formattedResult));
+	}
+	console.log(JSON.stringify({ results }));
 	const exitCode = results.length > 0 ? 3 : 0;
 	process.exit(exitCode);
 };
