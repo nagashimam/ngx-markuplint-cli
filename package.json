@@ -1,6 +1,6 @@
 {
   "name": "ngx-markuplint-cli",
-  "version": "0.0.14",
+  "version": "0.0.15",
   "description": "tool for running Markuplint in Angualr app",
   "type": "module",
   "bin": {
