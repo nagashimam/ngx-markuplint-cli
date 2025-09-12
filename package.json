@@ -18,7 +18,7 @@
   "license": "ISC",
   "dependencies": {
     "glob": "^10.4.2",
-    "ngx-html-bridge-markuplint": "^0.0.19"
+    "ngx-html-bridge-markuplint": "^0.0.20"
   },
   "devDependencies": {
     "@types/glob": "^8.1.0",
