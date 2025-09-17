@@ -21,6 +21,7 @@ const run = async () => {
 	for (const file of files) {
 		const rawResults = await runMarkuplintAgainstTemplateFile(file, {
 			includedAttributes,
+			nonEmptyItems: [],
 		});
 		rawResults
 			.map((result) => {
